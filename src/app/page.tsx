@@ -117,7 +117,7 @@ export default function Main() {
 			<Select
 				options={onekoOptions}
 				query="neko"
-				className="inline-block absolute"
+				className="inline-block absolute mt-2 ml-2"
 				placeholder="Cat Variant"
 				onChange={(selectedOption) => {
 					router.replace(`?neko=${selectedOption.value}#${hash || "home"}`);

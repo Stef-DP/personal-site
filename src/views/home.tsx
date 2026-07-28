@@ -5,11 +5,13 @@ import { discordActivityTypes } from "@/data/constants";
 import type { LanyardData } from "react-use-lanyard";
 import { socials } from "@/data/socials";
 
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from "react-tooltip";
 import Image from "next/image";
 import Link from "next/link";
-import { HackclubWebring } from "@/components/hackclubWebring";
-import { HorseRing } from "@/components/horseRing";
+import Select, { type SelectOption } from "@/components/select";
+import type { Webring } from "@/types/webrings";
+import { webrings } from "@/data/webrings";
+import { useSearchParams } from "next/navigation";
 
 const spotifyDefaultMessage = "Not listening to anything";
 const vscodeDefaultMessage = "Not coding anything";
@@ -42,6 +44,14 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 
 	const [playingStatus, setPlayingStatus] = useState<string>(
 		playingDefaultMessage,
+	);
+
+	const searchParams = useSearchParams()
+
+	const [selectedWebring, setSelectedWebring] = useState<Webring>(
+		webrings.find((webring) => webring.id === searchParams.get("webring")) || 
+		webrings.find((webring) => webring.default) || 
+		webrings[0]
 	);
 
 	const statuses = {
@@ -98,8 +108,9 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 		const workspaceRegex = /In (?<workspace>.*) - \d+ problems found/gi;
 		const fileRegex = /Working on (?<file>.*):\d+:\d+/gi;
 
-		const workspace = workspaceRegex.exec(vscodeData?.details || "")?.groups?.workspace
-		const file = fileRegex.exec(vscodeData?.state || "")?.groups?.file
+		const workspace = workspaceRegex.exec(vscodeData?.details || "")?.groups
+			?.workspace;
+		const file = fileRegex.exec(vscodeData?.state || "")?.groups?.file;
 
 		const vscodeMessage =
 			vscodeData && workspace && file
@@ -161,7 +172,12 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 				<div className="flex flex-wrap my-4 gap-2 justify-center">
 					{socials.map((social) => (
 						<div key={social.id}>
-							<Tooltip id={social.type === "mail" ? social.url : social.id} offset={28} className={`${social.tooltipColor} rounded-4xl! font-bold`} classNameArrow={social.tooltipColor}>
+							<Tooltip
+								id={social.type === "mail" ? social.url : social.id}
+								offset={28}
+								className={`${social.tooltipColor} rounded-4xl! font-bold`}
+								classNameArrow={social.tooltipColor}
+							>
 								{social.name}: {social.username}
 							</Tooltip>
 
@@ -169,7 +185,9 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 								href={
 									social.type === "mail" ? social.url : `/socials/${social.id}`
 								}
-								data-tooltip-id={social.type === "mail" ? social.url : social.id}
+								data-tooltip-id={
+									social.type === "mail" ? social.url : social.id
+								}
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`My ${social.name} profile`}
@@ -241,7 +259,7 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 								)}
 							</>
 						) : (
-							<>{spotifyDefaultMessage}</>
+							spotifyDefaultMessage
 						)}
 					</p>
 
@@ -257,12 +275,66 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 				</div>
 			</div>
 
-			<HackclubWebring />
+			<div className="fixed flex flex-col bottom-10 right-2">
+				<button
+					type="button"
+					className="mx-1 cursor-pointer"
+					onClick={selectedWebring.onNext}
+				>
+					<span className="icon-[tabler--arrow-narrow-up] size-8 align-middle" />
+				</button>
 
-			<HorseRing />
+				<button
+					type="button"
+					className="mx-1 cursor-pointer pt-2"
+					onClick={selectedWebring.onRand}
+				>
+					<span className="icon-[ion--dice] size-6" />
+				</button>
+
+				<Link href={selectedWebring.url} className="mx-1 hover:underline self-center">
+					<Image
+						width={25}
+						height={25}
+						src={selectedWebring.icon}
+						alt={selectedWebring.iconAlt}
+					/>
+				</Link>
+
+				<button
+					type="button"
+					className="mx-1 cursor-pointer pt-2"
+					onClick={selectedWebring.onPrev}
+				>
+					<span className="icon-[tabler--arrow-narrow-down] size-8 align-middle" />
+				</button>
+
+				<Select
+					options={
+						webrings.map((webring) => ({
+							// label: webring.name,
+							value: webring.id,
+							icon: webring.icon,
+							default: webring.default,
+						})) as SelectOption[]
+					}
+					showSelected={false}
+					className="mt-2"
+					placeholder=""
+					direction="horizontal"
+					position="left"
+					onChange={(option) => {
+						const webring = webrings.find((webr) => webr.id === option.value);
+
+						if (webring) {
+							setSelectedWebring(webring);
+						}
+					}}
+				/>
+			</div>
 
 			{onekoVariantCredits && (
-				<div className="fixed  bottom-5 right-5 text-end text-xs text-base-content/50 p-2">
+				<div className="fixed bottom-2 text-end text-xs text-base-content/50 p-2">
 					<p>Current oneko animation by </p>
 					{onekoVariantCredits}
 				</div>
