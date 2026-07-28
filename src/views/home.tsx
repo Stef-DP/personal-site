@@ -49,10 +49,21 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 	const searchParams = useSearchParams()
 
 	const [selectedWebring, setSelectedWebring] = useState<Webring>(
-		webrings.find((webring) => webring.id === searchParams.get("webring")) || 
 		webrings.find((webring) => webring.default) || 
 		webrings[0]
 	);
+
+	useEffect(() => {
+    const webringParam = searchParams.get("webring");
+
+    if (webringParam) {
+        const matchedWebring = webrings.find((webring) => webring.id === webringParam);
+
+        if (matchedWebring) {
+            setSelectedWebring(matchedWebring);
+        }
+    }
+}, [searchParams]);
 
 	const statuses = {
 		online: "status-success",
