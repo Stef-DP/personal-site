@@ -276,38 +276,40 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 			</div>
 
 			<div className="fixed flex flex-col bottom-10 right-2">
-				<button
-					type="button"
-					className="mx-1 cursor-pointer"
-					onClick={selectedWebring.onNext}
-				>
-					<span className="icon-[tabler--arrow-narrow-up] size-8 align-middle" />
-				</button>
+				<div className="flex flex-col rounded-full bg-[#2f3346] pt-2 pb-2">
+					<button
+						type="button"
+						className="mx-1 cursor-pointer"
+						onClick={selectedWebring.onNext}
+					>
+						<span className="icon-[tabler--arrow-narrow-up] size-8 align-middle" />
+					</button>
 
-				<button
-					type="button"
-					className="mx-1 cursor-pointer pt-2"
-					onClick={selectedWebring.onRand}
-				>
-					<span className="icon-[ion--dice] size-6" />
-				</button>
+					<button
+						type="button"
+						className="mx-1 cursor-pointer pt-2"
+						onClick={selectedWebring.onRand}
+					>
+						<span className="icon-[ion--dice] size-6" />
+					</button>
 
-				<Link href={selectedWebring.url} className="mx-1 hover:underline self-center">
-					<Image
-						width={25}
-						height={25}
-						src={selectedWebring.icon}
-						alt={selectedWebring.iconAlt}
-					/>
-				</Link>
+					<Link href={selectedWebring.url} className="mx-1 hover:underline self-center">
+						<Image
+							width={25}
+							height={25}
+							src={selectedWebring.icon}
+							alt={selectedWebring.iconAlt}
+						/>
+					</Link>
 
-				<button
-					type="button"
-					className="mx-1 cursor-pointer pt-2"
-					onClick={selectedWebring.onPrev}
-				>
-					<span className="icon-[tabler--arrow-narrow-down] size-8 align-middle" />
-				</button>
+					<button
+						type="button"
+						className="mx-1 cursor-pointer pt-2"
+						onClick={selectedWebring.onPrev}
+					>
+						<span className="icon-[tabler--arrow-narrow-down] size-8 align-middle" />
+					</button>
+				</div>
 
 				<Select
 					options={

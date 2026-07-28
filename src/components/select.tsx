@@ -83,13 +83,13 @@ export default function Select({
     const getPositionClasses = () => {
         switch (position) {
             case "top":
-                return "bottom-full mb-1 left-0 w-full";
+                return "bottom-full mb-1 left-0 min-w-full w-max max-w-sm";
             case "left":
                 return "right-full mr-1 top-0 min-w-max";
             case "right":
                 return "left-full ml-1 top-0 min-w-max";
             default:
-                return "top-full mt-1 left-0 w-full";
+                return "top-full mt-1 left-0 min-w-full w-max max-w-sm";
         }
     };
 
@@ -107,27 +107,27 @@ export default function Select({
         return "px-3 py-1.5 gap-2 rounded-xl";
     };
 
-    const getArrowRotationClosedClasses = () => {
+    const getArrowRotationOpenClasses = () => {
         switch(position) {
             case "top":
-                return "";
+                return "rotate-90";
             case "left":
-                return "rotate-90";
-            case "right":
-                return "rotate-90";
-            default:
                 return "";
+            case "right":
+                return "rotate-180";
+            default:
+                return "-rotate-90";
         }
     }
 
-    const getArrowRotationOpenClasses = () => {
+    const getArrowRotationClosedClasses = () => {
         switch(position) {
             case "top":
                 return "-rotate-90";
             case "left":
                 return "rotate-180";
             case "right":
-                return "-rotate-180";
+                return "";
             default:
                 return "rotate-90";
         }
@@ -164,7 +164,6 @@ export default function Select({
                     <span
                         className={`${
                             showMenu ? getArrowRotationOpenClasses() : getArrowRotationClosedClasses()
-                            // showMenu ? "rotate-90" : ""
                         } transition-transform duration-200 icon-[tabler--chevron-right] size-5 text-base-content mr-[-5px]`}
                     />
                 </div>
