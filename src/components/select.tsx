@@ -144,7 +144,7 @@ export default function Select({
                     onKeyDown={(e) => {
                         if (e.key === "Enter") handleInputClick();
                     }}
-                    className="btn btn-soft flex items-center gap-2 w-full justify-between"
+                    className="btn btn-soft flex items-center gap-2 w-full justify-between px-2"
                 >
                     {showSelected && (
                         <>
@@ -164,7 +164,7 @@ export default function Select({
                     <span
                         className={`${
                             showMenu ? getArrowRotationOpenClasses() : getArrowRotationClosedClasses()
-                        } transition-transform duration-200 icon-[tabler--chevron-right] size-5 text-base-content mr-[-5px]`}
+                        } transition-transform duration-200 icon-[tabler--chevron-right] size-5 text-base-content`}
                     />
                 </div>
 
