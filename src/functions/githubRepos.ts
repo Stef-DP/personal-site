@@ -83,7 +83,7 @@ async function fetchRepos(
 	repos: APIRepo[];
 }> {
 	const url =
-		next || "https://api.github.com/users/Stef-00012/repos?per_page=100";
+		next || "https://api.github.com/users/Stef-DP/repos?per_page=100";
 
 	let repos: APIRepo[] = [];
 

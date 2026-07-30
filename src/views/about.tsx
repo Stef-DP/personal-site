@@ -140,17 +140,17 @@ export default function About() {
 
 				<div className="flex flex-wrap my-4 justify-center">
 					<img
-						src="https://github-readme-streak-stats-one-blue.vercel.app/?user=Stef-00012&theme=catppuccin-mocha&card_height=275"
+						src="https://github-readme-streak-stats-one-blue.vercel.app/?user=Stef-DP&theme=catppuccin-mocha&card_height=275"
 						className="w-full sm:w-1/3 p-1"
 						alt="GitHub Streaks"
 					/>
 					<img
-						src={`https://github-readme-stats-silk-eight.vercel.app/api/top-langs/?username=Stef-00012&theme=catppuccin_mocha&layout=compact&langs_count=6&exclude_repo=${toplanguagesExcludedRepos.join(",")}`}
+						src={`https://github-readme-stats-silk-eight.vercel.app/api/top-langs/?username=Stef-DP&theme=catppuccin_mocha&layout=compact&langs_count=6&exclude_repo=${toplanguagesExcludedRepos.join(",")}`}
 						className="w-full sm:w-1/3 p-1"
 						alt="GitHub Top languages"
 					/>
 					<img
-						src="https://github-readme-stats-silk-eight.vercel.app/api?username=Stef-00012&show_icons=true&theme=catppuccin_mocha&line_height=36"
+						src="https://github-readme-stats-silk-eight.vercel.app/api?username=Stef-DP&show_icons=true&theme=catppuccin_mocha&line_height=36"
 						className="w-full sm:w-1/3 p-1"
 						alt="General GitHub Stats"
 					/>
