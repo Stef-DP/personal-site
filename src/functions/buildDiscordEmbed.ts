@@ -12,13 +12,11 @@ export function buildDiscordEmbed(
     components: (DiscordTextDisplay | DiscordSection | DiscordSeparator | DiscordActionRow)[] = []
 ): DiscordEmbed {
     return {
-        component: [
-            {
-                type: 17,
-                accent_color: 5115028,
-                components: components
-            }
-        ]
+        component: {
+            type: 17,
+            accent_color: 5115028,
+            components: components
+        }
     }
 }
 
