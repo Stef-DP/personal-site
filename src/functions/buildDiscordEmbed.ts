@@ -12,7 +12,7 @@ export function buildDiscordEmbed(
     components: (DiscordTextDisplay | DiscordSection | DiscordSeparator | DiscordActionRow)[] = []
 ): DiscordEmbed {
     return {
-        components: [
+        component: [
             {
                 type: 17,
                 accent_color: 5115028,

@@ -1,5 +1,5 @@
 export interface DiscordEmbed {
-    components: DiscordContainer[]
+    component: DiscordContainer
 }
 
 export interface DiscordContainer {
