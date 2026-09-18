@@ -19,6 +19,8 @@ import Script from "next/script";
 
 import type { ScoredFormattedRepo } from "@/types/github";
 import type { Project } from "@/types/projects";
+import { buildDiscordActionRow, buildDiscordButton, buildDiscordEmbed, buildDiscordSection, buildDiscordSeparator, buildDiscordTextDisplay, buildDiscordThumbnail } from "@/functions/buildDiscordEmbed";
+import { baseUrl } from "@/data/constants";
 
 type Page = "rabbit" | "home" | "projects" | "about";
 
@@ -52,6 +54,34 @@ export default function Main() {
 	const [page, setPage] = useState<Page>("home");
 
 	const [topRepos, setTopRepos] = useState<Project[]>([]);
+
+	const discordEmbed = buildDiscordEmbed([
+			buildDiscordSection(
+				[
+					buildDiscordTextDisplay(`## [My own bio :) - Stefano Del Prete | Home Page](${baseUrl})`),
+					buildDiscordTextDisplay("Most if not all of my socials are listed here :)")
+				],
+				buildDiscordThumbnail("https://api.lanyard.rest/694986201739952229.png")
+			),
+			buildDiscordSeparator(),
+			buildDiscordActionRow([
+				buildDiscordButton(
+					"About Me",
+					`${baseUrl}/about`,
+					"👤"
+				),
+				buildDiscordButton(
+					"My Projects",
+					`${baseUrl}/projects`,
+					"🛠️"
+				),
+				buildDiscordButton(
+					"My Rabbit",
+					`${baseUrl}/rabbit`,
+					"🐰"
+				)
+			])
+		])
 
 	useEffect(() => {
 		setPage((prevPage) =>
@@ -112,6 +142,8 @@ export default function Main() {
 
 	return (
 		<>
+			<DiscordEmbed embed={discordEmbed} />
+
 			{page === "home" && <div className="bgeffect" />}
 
 			<Select
