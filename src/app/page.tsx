@@ -68,17 +68,17 @@ export default function Main() {
 			buildDiscordActionRow([
 				buildDiscordButton(
 					"About Me",
-					`${baseUrl}/about`,
+					`${baseUrl}/#about`,
 					"👤"
 				),
 				buildDiscordButton(
 					"My Projects",
-					`${baseUrl}/projects`,
+					`${baseUrl}/#projects`,
 					"🛠️"
 				),
 				buildDiscordButton(
 					"My Rabbit",
-					`${baseUrl}/rabbit`,
+					`${baseUrl}/#rabbit`,
 					"🐰"
 				)
 			])
