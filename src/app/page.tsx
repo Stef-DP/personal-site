@@ -57,32 +57,32 @@ export default function Main() {
 	const [topRepos, setTopRepos] = useState<Project[]>([]);
 
 	const discordEmbed = buildDiscordEmbed([
-			buildDiscordSection(
-				[
-					buildDiscordTextDisplay(`## [My own bio :) - Stefano Del Prete | Home Page](${baseUrl})`),
-					buildDiscordTextDisplay("Most if not all of my socials are listed here :)")
-				],
-				buildDiscordThumbnail("https://api.lanyard.rest/694986201739952229.png")
+		buildDiscordSection(
+			[
+				buildDiscordTextDisplay(`## [My own bio :) - Stefano Del Prete | Home Page](${baseUrl})`),
+				buildDiscordTextDisplay("Most if not all of my socials are listed here :)")
+			],
+			buildDiscordThumbnail("https://api.lanyard.rest/694986201739952229.png")
+		),
+		buildDiscordSeparator(),
+		buildDiscordActionRow([
+			buildDiscordButton(
+				"About Me",
+				`${baseUrl}/#about`,
+				"👤"
 			),
-			buildDiscordSeparator(),
-			buildDiscordActionRow([
-				buildDiscordButton(
-					"About Me",
-					`${baseUrl}/#about`,
-					"👤"
-				),
-				buildDiscordButton(
-					"My Projects",
-					`${baseUrl}/#projects`,
-					"🛠️"
-				),
-				buildDiscordButton(
-					"My Rabbit",
-					`${baseUrl}/#rabbit`,
-					"🐰"
-				)
-			])
+			buildDiscordButton(
+				"My Projects",
+				`${baseUrl}/#projects`,
+				"🛠️"
+			),
+			buildDiscordButton(
+				"My Rabbit",
+				`${baseUrl}/#rabbit`,
+				"🐰"
+			)
 		])
+	]);
 
 	useEffect(() => {
 		setPage((prevPage) =>
