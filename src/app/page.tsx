@@ -21,6 +21,7 @@ import type { ScoredFormattedRepo } from "@/types/github";
 import type { Project } from "@/types/projects";
 import { buildDiscordActionRow, buildDiscordButton, buildDiscordEmbed, buildDiscordSection, buildDiscordSeparator, buildDiscordTextDisplay, buildDiscordThumbnail } from "@/functions/buildDiscordEmbed";
 import { baseUrl } from "@/data/constants";
+import { DiscordEmbed } from "@/components/discordEmbed";
 
 type Page = "rabbit" | "home" | "projects" | "about";
 

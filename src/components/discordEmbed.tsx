@@ -1,4 +1,4 @@
-function DiscordEmbed({
+export function DiscordEmbed({
     embed
 }: {
     embed: DiscordEmbed;
