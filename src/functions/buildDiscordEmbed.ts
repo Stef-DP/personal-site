@@ -1,3 +1,13 @@
+import type {
+    DiscordActionRow,
+    DiscordButton,
+    DiscordEmbed,
+    DiscordSection,
+    DiscordSeparator,
+    DiscordTextDisplay,
+    DiscordThumbnail
+} from "@/types/discordEmbed"
+
 export function buildDiscordEmbed(
     components: (DiscordTextDisplay | DiscordSection | DiscordSeparator | DiscordActionRow)[] = []
 ): DiscordEmbed {

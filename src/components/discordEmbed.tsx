@@ -1,7 +1,9 @@
+import type { DiscordEmbed as DiscordEmbedType } from "@/types/discordEmbed";
+
 export function DiscordEmbed({
     embed
 }: {
-    embed: DiscordEmbed;
+    embed: DiscordEmbedType;
 }) {
     return (
         <script

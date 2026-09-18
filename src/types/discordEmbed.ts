@@ -1,36 +1,36 @@
-interface DiscordEmbed {
+export interface DiscordEmbed {
     components: DiscordContainer[]
 }
 
-interface DiscordContainer {
+export interface DiscordContainer {
     type: 17;
     accent_color: number;
     components: (DiscordTextDisplay | DiscordSection | DiscordSeparator | DiscordActionRow)[];
 }
 
-interface DiscordTextDisplay {
+export interface DiscordTextDisplay {
     type: 10;
     content: string;
 }
 
-interface DiscordSection {
+export interface DiscordSection {
     type: 9;
     components: DiscordTextDisplay[];
     accessory: DiscordButton | DiscordThumbnail;
 }
 
-interface DiscordSeparator {
+export interface DiscordSeparator {
     type: 14;
     spacing: 1 | 2;
     divider: boolean;
 }
 
-interface DiscordActionRow {
+export interface DiscordActionRow {
     type: 1;
     components: DiscordButton[];
 }
 
-interface DiscordButton {
+export interface DiscordButton {
     type: 2;
     label: string;
     style: 5,
@@ -39,17 +39,17 @@ interface DiscordButton {
     disabled: boolean;
 }
 
-interface DiscordButtonEmoji {
+export interface DiscordButtonEmoji {
     name: string;
 }
 
-interface DiscordThumbnail {
+export interface DiscordThumbnail {
     type: 11;
     media: DiscordThumbnailMedia;
     description: string | null;
     spoiler: boolean;
 }
 
-interface DiscordThumbnailMedia {
+export interface DiscordThumbnailMedia {
     url: string;
 }
