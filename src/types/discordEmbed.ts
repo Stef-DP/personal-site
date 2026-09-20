@@ -2,10 +2,12 @@ export interface DiscordEmbed {
     component: DiscordContainer
 }
 
+export type SupportedDiscordComponents = DiscordTextDisplay | DiscordSection | DiscordSeparator | DiscordActionRow | DiscordMediaGallery
+
 export interface DiscordContainer {
     type: 17;
     accent_color: number;
-    components: (DiscordTextDisplay | DiscordSection | DiscordSeparator | DiscordActionRow)[];
+    components: SupportedDiscordComponents[];
 }
 
 export interface DiscordTextDisplay {
@@ -47,11 +49,21 @@ export interface DiscordButtonEmoji {
 
 export interface DiscordThumbnail {
     type: 11;
-    media: DiscordThumbnailMedia;
+    media: DiscordUnfurledMedia;
     description: string | null;
     spoiler: boolean;
 }
 
-export interface DiscordThumbnailMedia {
+export interface DiscordUnfurledMedia {
     url: string;
+}
+
+export interface DiscordMediaGallery {
+    type: 12;
+    items: DiscordMediaGalleryItem[];
+}
+
+export interface DiscordMediaGalleryItem {
+    media: DiscordUnfurledMedia;
+    spoiler: boolean;
 }

@@ -14,9 +14,19 @@ export default function Projects({ topRepos }: Props) {
 			<h1 className="my-4 mt-10 font-bold sm:mx-4 flex justify-between text-4xl items-center mb-10">
 				<span>Projects</span>
 
-				<a href="#home" className="btn btn-soft btn-accent">
+				<button 
+					type="button"
+					className="btn btn-soft btn-accent"
+					onClick={() => {
+						const url = new URL(window.location.href);
+
+						url.searchParams.set("page", "home");
+
+						window.history.replaceState(null, "", url);
+					}}
+				>
 					<span className="icon-[tabler--arrow-back] size-5" /> Back
-				</a>
+				</button>
 			</h1>
 
 			{topRepos.length > 0 ? (

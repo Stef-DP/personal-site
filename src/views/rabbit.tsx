@@ -1,12 +1,13 @@
 /** biome-ignore-all lint/performance/noImgElement: img is required for this to work */
-import { rabbitImagesCount } from "@/data/constants";
+import { rabbitImagesCount, rabbitImagesPathPrefix } from "@/data/constants";
 import useProgressiveImages from "@/hooks/useProgressiveImage";
 
 const imageData = [...Array(rabbitImagesCount)].map((_, i) => {
 	const index = i + 1;
+	
 	return {
-		lowQualitySrc: `/images/rabbit/pallino-${index}-low.webp`,
-		highQualitySrc: `/images/rabbit/pallino-${index}.webp`,
+		lowQualitySrc: `${rabbitImagesPathPrefix}${index}-low.webp`,
+		highQualitySrc: `${rabbitImagesPathPrefix}${index}.webp`,
 	};
 });
 
@@ -22,9 +23,19 @@ export default function Rabbit() {
 					<span className="text-lg font-normal">R.I.P. Pallino, August 1, 2013 &mdash; July 14, 2025 :(</span>
 				</span>
 
-				<a href="#home" className="btn btn-soft btn-accent">
+				<button 
+					type="button"
+					className="btn btn-soft btn-accent"
+					onClick={() => {
+						const url = new URL(window.location.href);
+
+						url.searchParams.set("page", "home");
+
+						window.history.replaceState(null, "", url);
+					}}
+				>
 					<span className="icon-[tabler--arrow-back] size-5" /> Back
-				</a>
+				</button>
 			</h1>
 
 			<div className="sm:mx-4 flex justify-center items-center ">

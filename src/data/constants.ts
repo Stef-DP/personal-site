@@ -4,6 +4,7 @@ export const mail = "me@stefdp.com";
 export const mainContentId = "mainContent";
 
 export const rabbitImagesCount = 13
+export const rabbitImagesPathPrefix = "/images/rabbit/pallino-";
 
 export const discordActivityTypes = {
 	playing: 0,

@@ -3,14 +3,17 @@ import type {
     DiscordButton,
     DiscordButtonEmoji,
     DiscordEmbed,
+    DiscordMediaGallery,
+    DiscordMediaGalleryItem,
     DiscordSection,
     DiscordSeparator,
     DiscordTextDisplay,
-    DiscordThumbnail
+    DiscordThumbnail,
+    SupportedDiscordComponents
 } from "@/types/discordEmbed"
 
 export function buildDiscordEmbed(
-    components: (DiscordTextDisplay | DiscordSection | DiscordSeparator | DiscordActionRow)[] = []
+    components: SupportedDiscordComponents[] = []
 ): DiscordEmbed {
     return {
         component: {
@@ -86,6 +89,27 @@ export function buildDiscordThumbnail(
             url: url
         },
         description: description || null,
+        spoiler: spoiler
+    }
+}
+
+export function buildDiscordMediaGallery(
+    items: DiscordMediaGalleryItem[]
+): DiscordMediaGallery {
+    return {
+        type: 12,
+        items: items
+    }
+}
+
+export function buildDiscordMediaGalleryItem(
+    url: string,
+    spoiler: boolean
+): DiscordMediaGalleryItem {
+    return {
+        media: {
+            url: url
+        },
         spoiler: spoiler
     }
 }

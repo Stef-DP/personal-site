@@ -1,3 +1,21 @@
+export const personalInfoObject = `const personalInfo: PersonalInfo = {
+    firstName: "Stefano",
+    lastName: "Del Prete",
+    getFullName: function(): string {
+        return \`\${this.firstName} \${this.lastName}\`
+    },
+    age: undefined, // Not public
+    gender: "Male",
+    birthday: new Date([[currentTimestamp]]).toLocaleString('it').split(',')[0].replace('[[currentYear]]', '200#'), // aka 15/03/200#
+    nationality: "Italian", // Suca
+    status: "[[striketrhoughStart]]Single[[striketrhoughEnd]] [[striketrhoughStart]]Alone... :([[striketrhoughEnd]] Just Want to Die", // how to run "taskkill /f life.exe" for IRL life?
+    pets: [{
+        type: "rabbit",
+        name: "Pallino",
+        age: 11 // 81 in rabbit years
+    }]
+};`
+
 export const aboutMeText = `import type {
     PersonalInfo,
     KnownLanguage,
@@ -14,23 +32,7 @@ export const aboutMeText = `import type {
 
 /* My personal informations */
 
-const personalInfo: PersonalInfo = {
-    firstName: "Stefano",
-    lastName: "Del Prete",
-    getFullName: function(): string {
-        return \`\${this.firstName} \${this.lastName}\`
-    },
-    age: undefined, // Not public
-    gender: "Male",
-    birthday: new Date([[currentTimestamp]]).toLocaleString('it').split(',')[0].replace('[[currentYear]]', '200#'), // aka 15/03/200#
-    nationality: "Italian", // Suca
-    status: "[[striketrhoughStart]]Single[[striketrhoughEnd]] [[striketrhoughStart]]Alone... :([[striketrhoughEnd]] Just Want to Die", // how to run "taskkill /f life.exe" for IRL life?
-    pets: [{
-        type: "rabbit",
-        name: "Pallino",
-        age: 11 // 81 in rabbit years
-    }]
-};
+${personalInfoObject}
 
 /* Spoken Languages */
 

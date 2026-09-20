@@ -2,10 +2,10 @@
 
 import { type ReactNode, useEffect, useState } from "react";
 import { useLanyard } from "react-use-lanyard";
-import useHash from "@/hooks/useHash";
+import usePageQuery from "@/hooks/usePageQuery";
 import axios from "axios";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { onekoVariants } from "@/data/oneko";
 
 import Projects from "@/views/projects";
@@ -19,17 +19,17 @@ import Script from "next/script";
 
 import type { ScoredFormattedRepo } from "@/types/github";
 import type { Project } from "@/types/projects";
-import { buildDiscordActionRow, buildDiscordButton, buildDiscordEmbed, buildDiscordSection, buildDiscordSeparator, buildDiscordTextDisplay, buildDiscordThumbnail } from "@/functions/buildDiscordEmbed";
-import { baseUrl } from "@/data/constants";
+import { buildDiscordActionRow, buildDiscordButton, buildDiscordEmbed, buildDiscordMediaGallery, buildDiscordMediaGalleryItem, buildDiscordSection, buildDiscordSeparator, buildDiscordTextDisplay, buildDiscordThumbnail } from "@/functions/buildDiscordEmbed";
+import { baseUrl, rabbitImagesCount, rabbitImagesPathPrefix } from "@/data/constants";
 import { DiscordEmbed } from "@/components/discordEmbed";
-import { socials } from "@/data/socials";
+import { aboutEmbedText, homeEmbedText } from "@/data/discordEmbed";
+import type { SupportedDiscordComponents } from "@/types/discordEmbed";
 
 type Page = "rabbit" | "home" | "projects" | "about";
 
 const pages: Page[] = ["rabbit", "home", "projects", "about"];
 
 export default function Main() {
-	const router = useRouter();
 	const searchParams = useSearchParams();
 
 	let currentVariant = searchParams.get("neko") || "maia";
@@ -51,11 +51,34 @@ export default function Main() {
 		socket: true,
 	});
 
-	const hash = useHash();
+	const pageQuery = usePageQuery();
 
-	const [page, setPage] = useState<Page>("home");
+	const [page, setPage] = useState<Page>(pages.includes(pageQuery as Page)
+		? (pageQuery as Page) || "home"
+		: "home"
+	);
 
 	const [topRepos, setTopRepos] = useState<Project[]>([]);
+
+	let mainEmbedComponent: SupportedDiscordComponents = buildDiscordTextDisplay(homeEmbedText)
+
+	if (page === "about") {
+		mainEmbedComponent = buildDiscordTextDisplay(aboutEmbedText)
+	} else if (page === "rabbit") {
+		const imageCount = rabbitImagesCount > 10 ? 10 : rabbitImagesCount;
+
+		const rabbitImages = [...Array(imageCount)].map((_, i) => {
+			const index = i + 1;
+
+			return `${baseUrl}${rabbitImagesPathPrefix}${index}.webp`
+		});
+
+		mainEmbedComponent = buildDiscordMediaGallery(
+			rabbitImages.map(src => {
+				return buildDiscordMediaGalleryItem(src, false)
+			})
+		)
+	}
 
 	const discordEmbed = buildDiscordEmbed([
 		buildDiscordSection(
@@ -65,14 +88,7 @@ export default function Main() {
 			],
 			buildDiscordThumbnail("https://api.lanyard.rest/694986201739952229.png")
 		),
-		buildDiscordTextDisplay(
-			`Meanwhile, here are my main socials:\n${
-				socials
-					.filter(social => social.displayInEmbed)
-					.map(social => `[${social.name}](${social.url})`)
-					.join(" | ")
-			}`
-		),
+		mainEmbedComponent,
 		buildDiscordSeparator(),
 		buildDiscordActionRow([
 			buildDiscordButton(
@@ -105,13 +121,13 @@ export default function Main() {
 
 	useEffect(() => {
 		setPage((prevPage) =>
-			pages.includes(hash as Page)
-				? (hash as Page) || prevPage
-				: hash === ""
+			pages.includes(pageQuery as Page)
+				? (pageQuery as Page) || prevPage
+				: pageQuery === ""
 					? "home"
 					: prevPage,
 		);
-	}, [hash]);
+	}, [pageQuery]);
 
 	const [hideLoading, setHideLoading] = useState<boolean>(false);
 	const [showHideLoadingButton, setShowHideLoadingButton] =
@@ -172,16 +188,16 @@ export default function Main() {
 				className="inline-block absolute mt-2 ml-2"
 				placeholder="Cat Variant"
 				onChange={(selectedOption) => {
-					router.replace(`?neko=${selectedOption.value}#${hash || "home"}`);
+					window.history.replaceState(null, "", `?page=${page}&neko=${selectedOption.value}`)
 
-					const event = new CustomEvent('onekoVariantChanged', {
+					const onekoEvent = new CustomEvent('onekoVariantChanged', {
 						detail: { variant: selectedOption.value }
 					});
 
 					const variant = onekoVariants.find(variant => variant.name === selectedOption.value);
 					if (variant) setOnekoVariantCredits(variant.credits);
 
-					window.dispatchEvent(event);
+					window.dispatchEvent(onekoEvent);
 				}}
 			/>
 

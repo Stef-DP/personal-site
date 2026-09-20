@@ -212,35 +212,47 @@ export default function Home({ loading, status, onekoVariantCredits }: Props) {
 				</div>
 
 				<div className="flex gap-2 font-mono text-accent mb-6">
-					<Link
+					<button
 						className="btn btn-soft btn-accent"
-						href="#about"
-						onClick={(event) => {
-							window.location.hash = event.currentTarget.hash;
+						type="button"
+						onClick={() => {
+							const url = new URL(window.location.href);
+
+							url.searchParams.set("page", "about");
+
+							window.history.replaceState(null, "", url);
 						}}
 					>
 						&#47;about
-					</Link>
+					</button>
 
-					<Link
+					<button
 						className="btn btn-soft btn-accent"
-						href="#projects"
-						onClick={(event) => {
-							window.location.hash = event.currentTarget.hash;
+						type="button"
+						onClick={() => {
+							const url = new URL(window.location.href);
+
+							url.searchParams.set("page", "projects");
+
+							window.history.replaceState(null, "", url);
 						}}
 					>
 						&#47;projects
-					</Link>
+					</button>
 
-					<Link
+					<button
 						className="btn btn-soft btn-accent"
-						href="#rabbit"
-						onClick={(event) => {
-							window.location.hash = event.currentTarget.hash;
+						type="button"
+						onClick={() => {
+							const url = new URL(window.location.href);
+
+							url.searchParams.set("page", "rabbit");
+
+							window.history.replaceState(null, "", url);
 						}}
 					>
 						&#47;rabbit
-					</Link>
+					</button>
 				</div>
 
 				<div className="mt-10 flex flex-col gap-2">

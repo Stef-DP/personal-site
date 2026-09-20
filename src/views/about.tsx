@@ -86,9 +86,19 @@ export default function About() {
 							</button>
 						)}
 
-						<a href="#home" className="btn btn-soft btn-accent">
+						<button 
+							type="button"
+							className="btn btn-soft btn-accent"
+							onClick={() => {
+								const url = new URL(window.location.href);
+
+								url.searchParams.set("page", "home");
+
+								window.history.replaceState(null, "", url);
+							}}
+						>
 							<span className="icon-[tabler--arrow-back] size-5" /> Back
-						</a>
+						</button>
 					</div>
 				</h1>
 				{plainText ? (
