@@ -8,4 +8,5 @@ export interface Social {
 	name: string;
 	url: string;
 	id: string;
+	displayInEmbed: boolean;
 }

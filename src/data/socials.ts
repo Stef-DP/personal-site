@@ -3,17 +3,6 @@ import { mail } from "@/data/constants";
 
 export const socials: Array<Social> = [
 	{
-		name: "Mail",
-		id: "mail",
-		icon: "icon-[tabler--mail-filled]",
-		tooltip: mail,
-		type: "mail",
-		color: "hover:text-[#bf211e]",
-		tooltipColor: "bg-[#bf211e]!",
-		url: `mailto:${mail}`,
-		username: mail,
-	},
-	{
 		name: "Discord",
 		id: "discord",
 		icon: "icon-[fa6-brands--discord]",
@@ -23,6 +12,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#5865F2]!",
 		url: "https://discord.com/users/694986201739952229",
 		username: "stef_dp",
+		displayInEmbed: true,
 	},
 	{
 		name: "GitHub",
@@ -34,6 +24,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#ffffff]! text-[#151b23]!",
 		url: "https://github.com/Stef-DP",
 		username: "Stef-DP",
+		displayInEmbed: true,
 	},
 	{
 		name: "Instagram",
@@ -45,6 +36,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#ff0069]!",
 		url: "https://instagram.com/stefanodelprete_",
 		username: "stefanodelprete_",
+		displayInEmbed: true,
 	},
 	{
 		name: "Mastodon",
@@ -56,6 +48,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#6364FF]!",
 		url: "https://mastodon.social/@Stef_DP",
 		username: "Stef_DP",
+		displayInEmbed: false,
 	},
 	{
 		name: "Matrix",
@@ -67,6 +60,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#ffffff]! text-[#000000]!",
 		url: "https://matrix.to/#/@stefdp:matrix.org",
 		username: "stefdp",
+		displayInEmbed: false,
 	},
 	{
 		name: "Reddit",
@@ -78,6 +72,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#ff4500]!",
 		url: "https://www.reddit.com/user/Stef_DP",
 		username: "Stef_DP",
+		displayInEmbed: false,
 	},
 	{
 		name: "Spotify",
@@ -89,6 +84,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#1ed760]!",
 		url: "https://open.spotify.com/user/313c4mw7yrey6idzfrhennointqi",
 		username: "Stef",
+		displayInEmbed: true,
 	},
 	{
 		name: "Steam",
@@ -100,6 +96,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#2a475e]!",
 		url: "https://steamcommunity.com/id/Stef_DP",
 		username: "Stefano_Del_Prete",
+		displayInEmbed: true,
 	},
 	{
 		name: "Telegram",
@@ -111,6 +108,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#27a3e3]!",
 		url: "https://t.me/Stef_DP",
 		username: "Stef_DP",
+		displayInEmbed: true,
 	},
 	{
 		name: "Threads",
@@ -122,6 +120,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#ffffff]! text-[#000000]!",
 		url: "https://www.threads.net/@stefanodelprete_",
 		username: "stefanodelprete_",
+		displayInEmbed: false,
 	},
 	{
 		name: "TikTok",
@@ -133,6 +132,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#fe2752]!",
 		url: "https://tiktok.com/@stefano0122",
 		username: "stefano0012",
+		displayInEmbed: false,
 	},
 	{
 		name: "Twitch",
@@ -144,6 +144,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#9147ff]!",
 		url: "https://twitch.tv/stef_dp",
 		username: "stef_dp",
+		displayInEmbed: false,
 	},
 	{
 		name: "X (Twitter)",
@@ -155,6 +156,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#1DA1F2]!",
 		url: "https://x.com/Stef_Del_Prete",
 		username: "Stef_Del_Prete",
+		displayInEmbed: false,
 	},
 	{
 		name: "YouTube",
@@ -166,6 +168,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#ff0033]!",
 		url: "https://youtube.com/@Stef_DP",
 		username: "Stefano Del Prete",
+		displayInEmbed: false,
 	},
 	{
 		name: "Revolt",
@@ -177,6 +180,7 @@ export const socials: Array<Social> = [
 		tooltipColor: "bg-[#f74451]!",
 		url: "https://app.revolt.chat/@01FEY7JBN0B1VG5D98BEBAE7KA",
 		username: "Stef",
+		displayInEmbed: false,
 	},
 	{
 		name: "Ko-fi",
@@ -187,6 +191,19 @@ export const socials: Array<Social> = [
 		color: "hover:text-[#ffffff]",
 		tooltipColor: "bg-[#ffffff]! text-[#000000]!",
 		username: "stef_dp",
+		displayInEmbed: true,
 		url: "https://ko-fi.com/stef_dp",
+	},
+	{
+		name: "Mail",
+		id: "mail",
+		icon: "icon-[tabler--mail-filled]",
+		tooltip: mail,
+		type: "mail",
+		color: "hover:text-[#bf211e]",
+		tooltipColor: "bg-[#bf211e]!",
+		url: `mailto:${mail}`,
+		username: mail,
+		displayInEmbed: true,
 	},
 ];

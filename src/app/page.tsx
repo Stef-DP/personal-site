@@ -22,6 +22,7 @@ import type { Project } from "@/types/projects";
 import { buildDiscordActionRow, buildDiscordButton, buildDiscordEmbed, buildDiscordSection, buildDiscordSeparator, buildDiscordTextDisplay, buildDiscordThumbnail } from "@/functions/buildDiscordEmbed";
 import { baseUrl } from "@/data/constants";
 import { DiscordEmbed } from "@/components/discordEmbed";
+import { socials } from "@/data/socials";
 
 type Page = "rabbit" | "home" | "projects" | "about";
 
@@ -63,6 +64,12 @@ export default function Main() {
 				buildDiscordTextDisplay("Most if not all of my socials are listed here :)")
 			],
 			buildDiscordThumbnail("https://api.lanyard.rest/694986201739952229.png")
+		),
+		buildDiscordTextDisplay(
+			socials
+			.filter(social => social.displayInEmbed)
+			.map(social => `[${social.name}](${social.url})`)
+			.join(" | ")
 		),
 		buildDiscordSeparator(),
 		buildDiscordActionRow([
