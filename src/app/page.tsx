@@ -60,16 +60,18 @@ export default function Main() {
 	const discordEmbed = buildDiscordEmbed([
 		buildDiscordSection(
 			[
-				buildDiscordTextDisplay(`## [My own bio :) - Stefano Del Prete | Home Page](${baseUrl})`),
-				buildDiscordTextDisplay("Most if not all of my socials are listed here :)")
+				buildDiscordTextDisplay(`## [My own bio - Stefano Del Prete](${baseUrl})`),
+				buildDiscordTextDisplay("Most if not all of my socials are listed on my website")
 			],
 			buildDiscordThumbnail("https://api.lanyard.rest/694986201739952229.png")
 		),
 		buildDiscordTextDisplay(
-			socials
-			.filter(social => social.displayInEmbed)
-			.map(social => `[${social.name}](${social.url})`)
-			.join(" | ")
+			`Meanwhile, here are my main socials:\n${
+				socials
+					.filter(social => social.displayInEmbed)
+					.map(social => `[${social.name}](${social.url})`)
+					.join(" | ")
+			}`
 		),
 		buildDiscordSeparator(),
 		buildDiscordActionRow([
