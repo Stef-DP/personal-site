@@ -45,7 +45,7 @@ export function getPersonalInfoObject(isEmbed: boolean): string {
 
 export function getPersonalInfoPlain(isEmbed: boolean): string {
     if (isEmbed) {
-        return `### Personal Info:
+        return `## Personal Info:
 **First Name**: Stefano
 **Last Name**: Del Prete
 **Full Name**: Stefano Del Prete
