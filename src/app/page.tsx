@@ -70,7 +70,9 @@ export default function Main() {
 				"About Me",
 				`${baseUrl}/#about`,
 				{
-					name: "👤"
+					// name: "👤"
+					name: "id_card",
+					id: "1551145098878918706"
 				}
 			),
 			buildDiscordButton(
@@ -78,8 +80,8 @@ export default function Main() {
 				`${baseUrl}/#projects`,
 				{
 					// name: "🛠️"
-					name: "pallino1",
-					id: "1551143516820869172"
+					name: "code",
+					id: "1551144496065159271"
 				}
 			),
 			buildDiscordButton(
