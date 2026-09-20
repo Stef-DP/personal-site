@@ -45,13 +45,15 @@ export const viewport: Viewport = {
 	initialScale: 1,
 };
 
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
 
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+    
+
 	return (
 		<html lang="en" data-theme="catppuccin-macchiato" className="bg-base-300">
 			<head>
