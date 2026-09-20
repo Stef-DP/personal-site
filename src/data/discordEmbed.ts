@@ -1,4 +1,4 @@
-import { personalInfoObject } from "./aboutMe";
+import { getPersonalInfoObject, getPersonalInfoPlain } from "./aboutMe";
 import { socials } from "./socials";
 
 export const homeEmbedText = `Meanwhile, here are my main socials:\n${
@@ -8,9 +8,14 @@ export const homeEmbedText = `Meanwhile, here are my main socials:\n${
         .join(" • ")
 }`
 
-export const aboutEmbedText = `\`\`\`ts
+export function getEmbedAboutText(plain: boolean): string {
+    if (plain) {
+        return getPersonalInfoPlain(true)
+    }
+
+    return `\`\`\`ts
 ${
-    personalInfoObject
+    getPersonalInfoObject(true)
         .replaceAll("[[striketrhoughStart]]", "~~")
         .replaceAll("[[striketrhoughEnd]]", "~~")
         .replaceAll("[[currentYear]]", new Date().getFullYear().toString())
@@ -24,3 +29,4 @@ ${
         )
 }
 \`\`\``
+}

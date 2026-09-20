@@ -1,4 +1,30 @@
-export const personalInfoObject = `const personalInfo: PersonalInfo = {
+import { replaceAboutMePlaceholders } from "@/functions/aboutMeCodeblock";
+
+export function getPersonalInfoObject(isEmbed: boolean): string {
+    if (isEmbed) {
+        let aboutMeText = `const personalInfo: PersonalInfo = {
+    firstName: "Stefano",
+    lastName: "Del Prete",
+    getFullName: function(): string {
+        return \`\${this.firstName} \${this.lastName}\`
+    },
+    age: undefined, // Not public
+    gender: "Male",
+    birthday: new Date([[currentTimestamp]]).toLocaleString('it').split(',')[0].replace('[[currentYear]]', '200#'), // aka 15/03/200#
+    nationality: "Italian", // Suca
+    pets: [{
+        type: "rabbit",
+        name: "Pallino",
+        age: 11 // 81 in rabbit years
+    }]
+};`
+
+        aboutMeText = replaceAboutMePlaceholders(aboutMeText, true)
+
+        return aboutMeText;
+    }
+
+    return `const personalInfo: PersonalInfo = {
     firstName: "Stefano",
     lastName: "Del Prete",
     getFullName: function(): string {
@@ -15,6 +41,55 @@ export const personalInfoObject = `const personalInfo: PersonalInfo = {
         age: 11 // 81 in rabbit years
     }]
 };`
+}
+
+export function getPersonalInfoPlain(isEmbed: boolean): string {
+    if (isEmbed) {
+        return `### Personal Info:
+**First Name**: Stefano
+**Last Name**: Del Prete
+**Full Name**: Stefano Del Prete
+**Age**: Not public
+**Birthday**: 15/03/200#
+**Nationality**: Italian
+**Pets**:
+- **Pallino** - Rabbit - 11yo (81 in rabbit years)
+`
+    }
+
+    return `<h1 className="text-2xl font-bold">Personal Info:</h1>
+<ul className="list-disc list-inside">
+    <li>
+        <p className="font-bold">First Name</p>: Stefano
+    </li>
+    <li>
+        <p className="font-bold">Last Name</p>: Del Prete
+    </li>
+    <li>
+        <p className="font-bold">Full Name</p>: Stefano Del Prete
+    </li>
+    <li>
+        <p className="font-bold">Age</p>: Not public
+    </li>
+    <li>
+        <p className="font-bold">Birthday</p>: 15/03/200#
+    </li>
+    <li>
+        <p className="font-bold">Nationality</p>: Italian
+    </li>
+    <li>
+        <p className="font-bold">Status</p>: <s>Single</s> <s>Alone... :(</s> Just Want to Die
+    </li>
+    <li>
+        <p className="font-bold">Pets</p>:
+        <ul className="list-disc list-inside ml-6">
+            <li>
+                <p className="font-bold">Pallino</p> - Rabbit - 11yo (81 in rabbit years)
+            </li>
+        </ul>
+    </li>
+</ul>`
+}
 
 export const aboutMeText = `import type {
     PersonalInfo,
@@ -32,7 +107,7 @@ export const aboutMeText = `import type {
 
 /* My personal informations */
 
-${personalInfoObject}
+${getPersonalInfoObject(false)}
 
 /* Spoken Languages */
 
@@ -162,38 +237,7 @@ export default {
 `;
 
 export const aboutMePlainText = `<div>
-<h1 className="text-2xl font-bold">Personal Info:</h1>
-<ul className="list-disc list-inside">
-    <li>
-        <p className="font-bold">First Name</p>: Stefano
-    </li>
-    <li>
-        <p className="font-bold">Last Name</p>: Del Prete
-    </li>
-    <li>
-        <p className="font-bold">Full Name</p>: Stefano Del Prete
-    </li>
-    <li>
-        <p className="font-bold">Age</p>: Not public
-    </li>
-    <li>
-        <p className="font-bold">Birthday</p>: 15/03/200#
-    </li>
-    <li>
-        <p className="font-bold">Nationality</p>: Italian
-    </li>
-    <li>
-        <p className="font-bold">Status</p>: <s>Single</s> <s>Alone... :(</s> Just Want to Die
-    </li>
-    <li>
-        <p className="font-bold">Pets</p>:
-        <ul className="list-disc list-inside ml-6">
-            <li>
-                <p className="font-bold">Pallino</p> - Rabbit - 11yo (81 in rabbit years)
-            </li>
-        </ul>
-    </li>
-</ul>
+${getPersonalInfoPlain(false)}
 
 <h1 className="text-2xl font-bold mt-4">Spoken Languages:</h1>
 <ul className="list-disc list-inside">

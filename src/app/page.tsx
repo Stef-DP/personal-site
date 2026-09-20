@@ -1,7 +1,7 @@
 import Main from "@/views/main";
 import type { SupportedDiscordComponents } from "@/types/discordEmbed";
 import { buildDiscordActionRow, buildDiscordButton, buildDiscordEmbed, buildDiscordMediaGallery, buildDiscordMediaGalleryItem, buildDiscordSection, buildDiscordSeparator, buildDiscordTextDisplay, buildDiscordThumbnail } from "@/functions/buildDiscordEmbed";
-import { aboutEmbedText, homeEmbedText } from "@/data/discordEmbed";
+import { getEmbedAboutText, homeEmbedText } from "@/data/discordEmbed";
 import { baseUrl, rabbitImagesCount, rabbitImagesPathPrefix } from "@/data/constants";
 import { DiscordEmbed } from "@/components/discordEmbed";
 import { pages, type PageType } from "@/data/pages";
@@ -23,10 +23,10 @@ export default async function Page({
 
 	let mainEmbedComponent: SupportedDiscordComponents = buildDiscordTextDisplay(homeEmbedText)
 
-	console.log({page, pageQuery});
-
 	if (page === "about") {
-		mainEmbedComponent = buildDiscordTextDisplay(aboutEmbedText)
+		const plainEmbedQuery = typeof params.plain === "string"
+
+		mainEmbedComponent = buildDiscordTextDisplay(getEmbedAboutText(plainEmbedQuery))
 	} else if (page === "rabbit") {
 		const imageCount = rabbitImagesCount > 10 ? 10 : rabbitImagesCount;
 

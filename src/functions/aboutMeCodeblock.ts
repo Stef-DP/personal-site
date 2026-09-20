@@ -6,21 +6,21 @@ import aboutMePlaceholders from "@/data/aboutMePlaceholders.json";
 hljs.registerLanguage("typescript", typescript);
 
 export function getCodeBlock() {
-	let replacedAboutMetext = aboutMeText;
+	let replacedAboutMeText = aboutMeText;
 
-	replacedAboutMetext = replacePlaceholders(replacedAboutMetext, true)
+	replacedAboutMeText = replaceAboutMePlaceholders(replacedAboutMeText, true)
 
-	let highlightedAboutMe = hljs.highlight(replacedAboutMetext, {
+	let highlightedAboutMe = hljs.highlight(replacedAboutMeText, {
 		language: "typescript",
 		ignoreIllegals: true,
 	}).value;
 
-	highlightedAboutMe = replacePlaceholders(highlightedAboutMe, false)
+	highlightedAboutMe = replaceAboutMePlaceholders(highlightedAboutMe, false)
 
 	return highlightedAboutMe;
 }
 
-function replacePlaceholders(text: string, js: boolean): string {
+export function replaceAboutMePlaceholders(text: string, js: boolean): string {
 	let replacedText = text;
 
 	for (const placeholder in aboutMePlaceholders) {
