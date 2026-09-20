@@ -70,7 +70,6 @@ export default function Main() {
 				"About Me",
 				`${baseUrl}/#about`,
 				{
-					// name: "👤"
 					name: "id_card",
 					id: "1551145098878918706"
 				}
@@ -79,7 +78,6 @@ export default function Main() {
 				"My Projects",
 				`${baseUrl}/#projects`,
 				{
-					// name: "🛠️"
 					name: "code",
 					id: "1551144496065159271"
 				}
@@ -88,8 +86,8 @@ export default function Main() {
 				"My Rabbit",
 				`${baseUrl}/#rabbit`,
 				{
-					name: "pallino",
-					id: "1551141365751226388",
+					name: "rabbit",
+					id: "1551151358017544222",
 					animated: false
 				}
 			)
