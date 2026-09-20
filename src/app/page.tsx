@@ -77,7 +77,9 @@ export default function Main() {
 				"My Projects",
 				`${baseUrl}/#projects`,
 				{
-					name: "🛠️"
+					// name: "🛠️"
+					name: "pallino1",
+					id: "1551143516820869172"
 				}
 			),
 			buildDiscordButton(
