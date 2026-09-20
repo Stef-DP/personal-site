@@ -41,6 +41,8 @@ export interface DiscordButton {
 
 export interface DiscordButtonEmoji {
     name: string;
+    id?: string;
+    animated?: boolean;
 }
 
 export interface DiscordThumbnail {

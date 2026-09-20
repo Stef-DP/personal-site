@@ -1,6 +1,7 @@
 import type {
     DiscordActionRow,
     DiscordButton,
+    DiscordButtonEmoji,
     DiscordEmbed,
     DiscordSection,
     DiscordSeparator,
@@ -61,16 +62,14 @@ export function buildDiscordActionRow(
 export function buildDiscordButton(
     label: string,
     url: string,
-    emoji?: string,
+    emoji?: DiscordButtonEmoji,
     disabled: boolean = false
 ): DiscordButton {
     return {
         type: 2,
         label: label,
         style: 5,
-        emoji: emoji ? {
-            name: emoji,
-        } : null,
+        emoji: emoji || null,
         url: url,
         disabled: disabled
     }

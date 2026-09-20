@@ -69,17 +69,25 @@ export default function Main() {
 			buildDiscordButton(
 				"About Me",
 				`${baseUrl}/#about`,
-				"👤"
+				{
+					name: "👤"
+				}
 			),
 			buildDiscordButton(
 				"My Projects",
 				`${baseUrl}/#projects`,
-				"🛠️"
+				{
+					name: "🛠️"
+				}
 			),
 			buildDiscordButton(
 				"My Rabbit",
 				`${baseUrl}/#rabbit`,
-				"🐰"
+				{
+					name: "pallino",
+					id: "1551134815741284402",
+					animated: false
+				}
 			)
 		])
 	]);
