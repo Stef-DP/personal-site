@@ -13,6 +13,19 @@ export default async function Page({
 }) {
     const params = await searchParams;
 
+	const urlSearchParams = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+            value.forEach(v => {
+				urlSearchParams.append(key, v)
+			});
+        } else if (value) {
+            urlSearchParams.append(key, value);
+        }
+    });
+
+    const pageUrl = `${baseUrl}${urlSearchParams.size > 0 ? `?${urlSearchParams}` : ""}`;
+
     const pageQuery: PageType = typeof params.page === "string"
         ? params.page as PageType
         : "home";
@@ -46,7 +59,7 @@ export default async function Page({
     const discordEmbed = buildDiscordEmbed([
 		buildDiscordSection(
 			[
-				buildDiscordTextDisplay(`## [My own bio - Stefano Del Prete](${baseUrl})`),
+				buildDiscordTextDisplay(`## [My own bio - Stefano Del Prete](${pageUrl})`),
 				buildDiscordTextDisplay("Most if not all of my socials are listed on my website")
 			],
 			buildDiscordThumbnail("https://api.lanyard.rest/694986201739952229.png")
@@ -56,7 +69,7 @@ export default async function Page({
 		buildDiscordActionRow([
 			buildDiscordButton(
 				"About Me",
-				`${baseUrl}/#about`,
+				`${baseUrl}?page=about`,
 				{
 					name: "id_card",
 					id: "1551145098878918706"
@@ -64,7 +77,7 @@ export default async function Page({
 			),
 			buildDiscordButton(
 				"My Projects",
-				`${baseUrl}/#projects`,
+				`${baseUrl}?page=projects`,
 				{
 					name: "code",
 					id: "1551144496065159271"
@@ -72,7 +85,7 @@ export default async function Page({
 			),
 			buildDiscordButton(
 				"My Rabbit",
-				`${baseUrl}/#rabbit`,
+				`${baseUrl}?page=rabbit`,
 				{
 					name: "rabbit",
 					id: "1551151358017544222",
